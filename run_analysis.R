@@ -60,13 +60,20 @@ df_mean_std_total$activitylabel <- vector(length = length(df_mean_std_total$acti
 
 # if column activitynumber corresponds to activitylabels$V1, put the value of that same row from activitylabels$V2 in the activitylabel column of the df
 for(i in 1:length(df_mean_std_total$activitynumber)){df_mean_std_total$activitylabel[i] <- activitylabels[df_mean_std_total$activitynumber[i],2]}
+# ADD LINE FOR EXPORTING/SAVING DATASET TO FILE
 
 
 # 5. Create a second, independent tidy data set with the average of each variable for each activity and each subject ####
 df_mean_std_total$activitylabel <- as.factor(df_mean_std_total$activitylabel) # turn activity label variable back into a factor variable 
 
+#werkt niet: DOES NOT GROUP -> OPZOEKEN WAT FOUT GAAT
 library(dplyr)
-#for each id and activity nr, take mean of variable
-# 1. take mean of subj 1, activity 1 and tBodyAcc-mean()-X
+df_tbl <- tbl_df(df_mean_std_total)
+df_grouped <- group_by(df_tbl, activitylabel)
+df_grouped2 <- group_by(df_grouped,id,add=TRUE)
+mean(df_grouped2$`tBodyAcc-mean()-X`)
 
-# df_grouped <- group_by(df_mean_std_total, activitylabel) werkt niet
+#for each id and activity nr, take mean of variable
+# 1. take mean of subj 1, activity 1 and tBodyAcc-mean()-X: DEZE WERKEN:
+mean(df_mean_std_total$`tBodyAcc-mean()-X`[df_mean_std_total$id== 1])
+mean(df_mean_std_total$`tBodyAcc-mean()-X`[df_mean_std_total$id== 4 & df_mean_std_total$activitynumber==1],na.rm=TRUE)
