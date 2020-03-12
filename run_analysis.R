@@ -47,12 +47,26 @@ total_df <- rbind(data_train,data_test) # 10299 rows by 561 columns
 df_mean_std <- total_df[,grep("mean|std", names(total_df), value=TRUE)] # 10299 rows by 79 columns
 
 
-# 3. Use descriptive activity names to name the activities in the data set ####
+# 3. Appropriately label the dataset with descriptive variable names ####
 subj_nrs <- rbind(subj_nrs_train,subj_nrs_test) # combine subject ids for train and test sets
 activity <- rbind(activity_train,activity_test) # combine activity indicators for train and test sets
 df_mean_std_total <- cbind(subj_nrs,activity,df_mean_std) # add subject ids and activity indicators to test set
 
 
-# 4. Create a second, independent tidy data set with the average of each variable for each activity and each subject ####
+# 4. Use descriptive activity names to name the activities in the data set ####
+activitylabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
+activitylabels$V2 <- as.character(activitylabels$V2) # The labels are read in as factors, which does not work in the for loop
+df_mean_std_total$activitylabel <- vector(length = length(df_mean_std_total$activitynumber)) # create an empty vector which will contain the activity labels
+
+# if column activitynumber corresponds to activitylabels$V1, put the value of that same row from activitylabels$V2 in the activitylabel column of the df
+for(i in 1:length(df_mean_std_total$activitynumber)){df_mean_std_total$activitylabel[i] <- activitylabels[df_mean_std_total$activitynumber[i],2]}
 
 
+# 5. Create a second, independent tidy data set with the average of each variable for each activity and each subject ####
+df_mean_std_total$activitylabel <- as.factor(df_mean_std_total$activitylabel) # turn activity label variable back into a factor variable 
+
+library(dplyr)
+#for each id and activity nr, take mean of variable
+# 1. take mean of subj 1, activity 1 and tBodyAcc-mean()-X
+
+# df_grouped <- group_by(df_mean_std_total, activitylabel) werkt niet
