@@ -3,7 +3,7 @@
 # Date: 2020-03-11
 
 # 0. Prepare the data ####
-# Set working directory
+# Set working directory > change this to the folder where your original data are located
 setwd("C:/Users/dorie/Documenten/201912_Coursera_Data_Science_Specialization/3. Getting and cleaning data/GettingCleaningDataCourseProject")
 
 # Download the data
@@ -51,7 +51,7 @@ df_mean_std <- total_df[,grep("mean|std", names(total_df), value=TRUE)] # 10299 
 subj_nrs <- rbind(subj_nrs_train,subj_nrs_test) # combine subject ids for train and test sets
 activity <- rbind(activity_train,activity_test) # combine activity indicators for train and test sets
 df_mean_std_total <- cbind(subj_nrs,activity,df_mean_std) # add subject ids and activity indicators to test set
-
+names(df_mean_std_total) <- tolower(sub("\\()","",names(df_mean_std_total),)) # remove () and make all names lowercase
 
 # 4. Use descriptive activity names to name the activities in the data set ####
 activitylabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
@@ -60,20 +60,17 @@ df_mean_std_total$activitylabel <- vector(length = length(df_mean_std_total$acti
 
 # if column activitynumber corresponds to activitylabels$V1, put the value of that same row from activitylabels$V2 in the activitylabel column of the df
 for(i in 1:length(df_mean_std_total$activitynumber)){df_mean_std_total$activitylabel[i] <- activitylabels[df_mean_std_total$activitynumber[i],2]}
-# ADD LINE FOR EXPORTING/SAVING DATASET TO FILE
+
+# Export the dataset to a .txt file
+df_mean_std_total$activitynumber <- NULL
+write.table(df_mean_std_total,"tidy_dataset_1.txt",row.names = FALSE) # export
 
 
 # 5. Create a second, independent tidy data set with the average of each variable for each activity and each subject ####
 df_mean_std_total$activitylabel <- as.factor(df_mean_std_total$activitylabel) # turn activity label variable back into a factor variable 
 
-#werkt niet: DOES NOT GROUP -> OPZOEKEN WAT FOUT GAAT
 library(dplyr)
 df_tbl <- tbl_df(df_mean_std_total)
-df_grouped <- group_by(df_tbl, activitylabel)
-df_grouped2 <- group_by(df_grouped,id,add=TRUE)
-mean(df_grouped2$`tBodyAcc-mean()-X`)
+df_grouped <- df_tbl %>% group_by(activitylabel, id) %>% summarize_all(funs(mean)) # group by id and activity label and take the mean of all variables
 
-#for each id and activity nr, take mean of variable
-# 1. take mean of subj 1, activity 1 and tBodyAcc-mean()-X: DEZE WERKEN:
-mean(df_mean_std_total$`tBodyAcc-mean()-X`[df_mean_std_total$id== 1])
-mean(df_mean_std_total$`tBodyAcc-mean()-X`[df_mean_std_total$id== 4 & df_mean_std_total$activitynumber==1],na.rm=TRUE)
+write.table(df_grouped, "tidy_dataset_summary.txt",row.names=FALSE) # export
