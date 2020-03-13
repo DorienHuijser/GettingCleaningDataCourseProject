@@ -384,7 +384,27 @@ summary {
 <li>Standing</li>
 <li>Laying down</li>
 </ul>
-<p><strong>Preprocessing</strong>: the signals from the accelerometer and gyroscope were noise-filtered and sampled</p>
+<p>Both the original dataset and the tidy datasets created with this script contain data from these smartphone watches for all participants during all of these six activities.</p>
+<div id="output-dataset-1-tidy_dataset_1.txt" class="section level3">
+<h3>Output dataset 1: tidy_dataset_1.txt</h3>
+<p>This dataset contains all variables with measurements on the mean and standard deviation for each measurement. It is a combination of the testing and training datasets from the original data, but only containing the variables that have the mean or standard deviation from the original dataset. Note that there are multiple measurements for each subject-activitylabel combination. In total, there are 102999 observations of 79 measured variables and 2 identifiers (id and activitylabel):</p>
+<ul>
+<li>id: subject id (number, 1-30)</li>
+<li>activitylabel: label of the type of activity measured (standing, sitting, laying, walking, walking upstairs, walking downstairs)</li>
+<li>variables measured (all numeric): gravity movements, (body) acceleration (x-axis, y-axis and z-axis) and (body) gyroscopic movements (x-axis, y-axis and z-axis):</li>
+</ul>
+<p>```r code all measured variables “tbodyacc-mean-x”, “tbodyacc-mean-y”, “tbodyacc-mean-z”, “tbodyacc-std-x”, “tbodyacc-std-y”, “tbodyacc-std-z”, “tgravityacc-mean-x”, “tgravityacc-mean-y”, “tgravityacc-mean-z”, “tgravityacc-std-x”, “tgravityacc-std-y”, “tgravityacc-std-z”, “tbodyaccjerk-mean-x”, “tbodyaccjerk-mean-y”, “tbodyaccjerk-mean-z”, “tbodyaccjerk-std-x”, “tbodyaccjerk-std-y”m-, “tbodyaccjerk-std-z”, “tbodygyro-mean-x”, “tbodygyro-mean-y”, “tbodygyro-mean-z”, “tbodygyro-std-x”, “tbodygyro-std-y”, “tbodygyro-std-z”, “tbodygyrojerk-mean-x”, “tbodygyrojerk-mean-y”, “tbodygyrojerk-mean-z”, “tbodygyrojerk-std-x”, “tbodygyrojerk-std-y”, “tbodygyrojerk-std-z”, “tbodyaccmag-mean”, “tbodyaccmag-std”, “tgravityaccmag-mean”, “tgravityaccmag-std”, “tbodyaccjerkmag-mean”, “tbodyaccjerkmag-std”, “tbodygyromag-mean”, “tbodygyromag-std”, “tbodygyrojerkmag-mean”, “tbodygyrojerkmag-std”, “fbodyacc-mean-x”, “fbodyacc-mean-y”, “fbodyacc-mean-z”, “fbodyacc-std-x”, “fbodyacc-std-y”, “fbodyacc-std-z”, “fbodyacc-meanfreq-x”, “fbodyacc-meanfreq-y”, “fbodyacc-meanfreq-z”, “fbodyaccjerk-mean-x”, “fbodyaccjerk-mean-y”, “fbodyaccjerk-mean-z”, “fbodyaccjerk-std-x”, “fbodyaccjerk-std-y”, “fbodyaccjerk-std-z”, “fbodyaccjerk-meanfreq-x”, “fbodyaccjerk-meanfreq-y”, “fbodyaccjerk-meanfreq-z”, “fbodygyro-mean-x”, “fbodygyro-mean-y”, “fbodygyro-mean-z”“fbodygyro-std-x”, “fbodygyro-std-y”,“fbodygyro-std-z”, “fbodygyro-meanfreq-x”, “fbodygyro-meanfreq-y”, “fbodygyro-meanfreq-z”, “fbodyaccmag-mean”, “fbodyaccmag-std”, “fbodyaccmag-meanfreq”, “fbodybodyaccjerkmag-mean”, “fbodybodyaccjerkmag-std”, “fbodybodyaccjerkmag-meanfreq”, “fbodybodygyromag-mean”, “fbodybodygyromag-std”, “fbodybodygyromag-meanfreq”, “fbodybodygyrojerkmag-mean”, “fbodybodygyrojerkmag-std”, “fbodybodygyrojerkmag-meanfreq” ````</p>
+</div>
+<div id="output-dataset-2-tidy_dataset_summary.txt" class="section level3">
+<h3>Output dataset 2: tidy_dataset_summary.txt</h3>
+<p>This dataset contains the mean of each variable grouped by subject id and activity. So for each activity and each subject, it gives the average of each of the 79 measured variables as stated above.</p>
+<p>Structure: 180 rows (30 participants * 6 activities) by 81 columns:</p>
+<ul>
+<li>activitylabel (standing, sitting, laying, walking, walking upstairs, walking downstairs)</li>
+<li>id: subject id (number, 1-30)</li>
+<li>the 79 variables as stated above</li>
+</ul>
+</div>
 </div>
 
 

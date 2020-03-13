@@ -21,15 +21,25 @@ The information included in this codebook was derived by the information provide
 - Standing
 - Laying down
 
-**Preprocessing**: the signals from the accelerometer and gyroscope were noise-filtered and sampled, see Anguita et al. (2012) for more details.
 
-## Codebook for the tidy dataset
-**Note**: This codebook still needs to be updated
+Both the original dataset and the tidy datasets created with this script contain data from these smartphone watches for all participants during all of these six activities. 
 
-### Output dataset: df_mean_std_total.txt
-This dataset contains all variables with measurements on the mean and standard deviation for each measurement.
 
-- "id":
--"activitynumber"
-- "tBodyAcc-mean()-X", "tBodyAcc-mean()-Y", "tBodyAcc-mean()-Z", "tBodyAcc-std()-X", "tBodyAcc-std()-Y", "tBodyAcc-std()-Z", "tGravityAcc-mean()-X", "tGravityAcc-mean()-Y", "tGravityAcc-mean()-Z", "tGravityAcc-std()-X", "tGravityAcc-std()-Y", "tGravityAcc-std()-Z", "tBodyAccJerk-mean()-X", "tBodyAccJerk-mean()-Y", "tBodyAccJerk-mean()-Z", "tBodyAccJerk-std()-X", "tBodyAccJerk-std()-Y", "tBodyAccJerk-std()-Z", "tBodyGyro-mean()-X", "tBodyGyro-mean()-Y", "tBodyGyro-mean()-Z", "tBodyGyro-std()-X", "tBodyGyro-std()-Y", "tBodyGyro-std()-Z", "tBodyGyroJerk-mean()-X", "tBodyGyroJerk-mean()-Y", "tBodyGyroJerk-mean()-Z", "tBodyGyroJerk-std()-X", "tBodyGyroJerk-std()-Y", "tBodyGyroJerk-std()-Z", "tBodyAccMag-mean()", "tBodyAccMag-std()", "tGravityAccMag-mean()", "tGravityAccMag-std()", "tBodyAccJerkMag-mean()", "tBodyAccJerkMag-std()", "tBodyGyroMag-mean()", "tBodyGyroMag-std()", "tBodyGyroJerkMag-mean()", "tBodyGyroJerkMag-std()", "fBodyAcc-mean()-X", "fBodyAcc-mean()-Y", "fBodyAcc-mean()-Z", "fBodyAcc-std()-X", "fBodyAcc-std()-Y", "fBodyAcc-std()-Z","fBodyAcc-meanFreq()-X", "fBodyAcc-meanFreq()-Y", "fBodyAcc-meanFreq()-Z", "fBodyAccJerk-mean()-X", "fBodyAccJerk-mean()-Y", "fBodyAccJerk-mean()-Z", "fBodyAccJerk-std()-X", "fBodyAccJerk-std()-Y", "fBodyAccJerk-std()-Z", "fBodyAccJerk-meanFreq()-X", "fBodyAccJerk-meanFreq()-Y", "fBodyAccJerk-meanFreq()-Z", "fBodyGyro-mean()-X", "fBodyGyro-mean()-Y", "fBodyGyro-mean()-Z", "fBodyGyro-std()-X", "fBodyGyro-std()-Y", "fBodyGyro-std()-Z", "fBodyGyro-meanFreq()-X", "fBodyGyro-meanFreq()-Y", "fBodyGyro-meanFreq()-Z", "fBodyAccMag-mean()", "fBodyAccMag-std()", "fBodyAccMag-meanFreq()", "fBodyBodyAccJerkMag-mean()", "fBodyBodyAccJerkMag-std()", "fBodyBodyAccJerkMag-meanFreq()", "fBodyBodyGyroMag-mean()", "fBodyBodyGyroMag-std()", "fBodyBodyGyroMag-meanFreq()", "fBodyBodyGyroJerkMag-mean()", "fBodyBodyGyroJerkMag-std()", "fBodyBodyGyroJerkMag-meanFreq()"
-- "activitylabel"
+### Output dataset 1: tidy_dataset_1.txt
+This dataset contains all variables with measurements on the mean and standard deviation for each measurement. It is a combination of the testing and training datasets from the original data, but only containing the variables that have the mean or standard deviation from the original dataset. Note that there are multiple measurements for each subject-activitylabel combination. In total, there are 102999 observations of 79 measured variables and 2 identifiers (id and activitylabel):
+
+- id: subject id (number, 1-30)
+- activitylabel: label of the type of activity measured (standing, sitting, laying, walking, walking upstairs, walking downstairs)
+- variables measured (all numeric): gravity movements, (body) acceleration (x-axis, y-axis and z-axis) and (body) gyroscopic movements (x-axis, y-axis and z-axis):
+
+ "tbodyacc-mean-x", "tbodyacc-mean-y", "tbodyacc-mean-z", "tbodyacc-std-x", "tbodyacc-std-y", "tbodyacc-std-z", "tgravityacc-mean-x", "tgravityacc-mean-y", "tgravityacc-mean-z", "tgravityacc-std-x", "tgravityacc-std-y", "tgravityacc-std-z", "tbodyaccjerk-mean-x", "tbodyaccjerk-mean-y", "tbodyaccjerk-mean-z", "tbodyaccjerk-std-x", "tbodyaccjerk-std-y"m-, "tbodyaccjerk-std-z", "tbodygyro-mean-x", "tbodygyro-mean-y", "tbodygyro-mean-z", "tbodygyro-std-x", "tbodygyro-std-y", "tbodygyro-std-z", "tbodygyrojerk-mean-x", "tbodygyrojerk-mean-y", "tbodygyrojerk-mean-z", "tbodygyrojerk-std-x", "tbodygyrojerk-std-y", "tbodygyrojerk-std-z", "tbodyaccmag-mean", "tbodyaccmag-std", "tgravityaccmag-mean", "tgravityaccmag-std", "tbodyaccjerkmag-mean", "tbodyaccjerkmag-std", "tbodygyromag-mean", "tbodygyromag-std", "tbodygyrojerkmag-mean", "tbodygyrojerkmag-std", "fbodyacc-mean-x", "fbodyacc-mean-y", "fbodyacc-mean-z", "fbodyacc-std-x", "fbodyacc-std-y", "fbodyacc-std-z", "fbodyacc-meanfreq-x", "fbodyacc-meanfreq-y", "fbodyacc-meanfreq-z", "fbodyaccjerk-mean-x", "fbodyaccjerk-mean-y", "fbodyaccjerk-mean-z", "fbodyaccjerk-std-x", "fbodyaccjerk-std-y", "fbodyaccjerk-std-z", "fbodyaccjerk-meanfreq-x", "fbodyaccjerk-meanfreq-y", "fbodyaccjerk-meanfreq-z", "fbodygyro-mean-x", "fbodygyro-mean-y", "fbodygyro-mean-z""fbodygyro-std-x", "fbodygyro-std-y","fbodygyro-std-z", "fbodygyro-meanfreq-x", "fbodygyro-meanfreq-y", "fbodygyro-meanfreq-z", "fbodyaccmag-mean", "fbodyaccmag-std", "fbodyaccmag-meanfreq", "fbodybodyaccjerkmag-mean", "fbodybodyaccjerkmag-std", "fbodybodyaccjerkmag-meanfreq", "fbodybodygyromag-mean", "fbodybodygyromag-std", "fbodybodygyromag-meanfreq", "fbodybodygyrojerkmag-mean", "fbodybodygyrojerkmag-std", "fbodybodygyrojerkmag-meanfreq"
+
+
+### Output dataset 2: tidy_dataset_summary.txt
+This dataset contains the mean of each variable grouped by subject id and activity. So for each activity and each subject, it gives the average of each of the 79 measured variables as stated above.
+
+Structure: 180 rows (30 participants * 6 activities) by 81 columns: 
+
+- activitylabel (standing, sitting, laying, walking, walking upstairs, walking downstairs)
+- id: subject id (number, 1-30)
+- the 79 variables as stated above
